@@ -1,0 +1,54 @@
+
+-------------------------------------------------
+|	layeredAnimation - a plugin for ImpactJS	|
+-------------------------------------------------
+
+
+DESCRIPTION:
+
+Tested on ImpactJS version 1.19
+
+Allows you to add "layers" to an animation sheet - it injects 2 new methods into ig.AnimationSheet:
+
+- addLayer(path) : adds another "layer" (sprite sheet) over the existing sprite sheet.
+	path: the path to the animation sheet to layer over the rest - must be the same dimensions as your base animation sheet (duh).
+
+- removeLayer(path) : one guess......
+
+
+
+USE: 
+
+1. create a "plugins" directory within /impact/lib/, and save 'layeredAnimation.js' in this directory.
+
+2. In your entity class, include 'plugins.layeredAnimation' within .requires(), and use the addLayer() method to add additional layers over your base sprite sheet, i.e.:
+
+
+
+EXAMPLE ENTITY:
+
+ig.module(
+	'game.entities.player'
+)
+.requires(
+	'impact.entity',
+	'plugins.layeredAnimation'
+)
+.defines(function(){
+
+EntityPlayer = ig.Entity.extend({
+	
+	init: function( x, y, settings )
+	{
+		this.animSheet = new ig.AnimationSheet( 'media/some-character.png', 64, 64 );
+		this.animSheet.addLayer( 'media/some-character-HELMET.png' );
+		this.addAnim('idle', 1, [0] );
+
+		this.parent( x, y, settings );
+	}
+
+});
+
+});
+
+
