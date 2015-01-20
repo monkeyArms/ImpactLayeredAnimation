@@ -4,9 +4,9 @@ ig.module(
 .requires(
 	'impact.animation'
 )
-.defines(function(){
-				  
-				  
+.defines(function()
+{
+
 	ig.AnimationSheet.inject({
 
 
